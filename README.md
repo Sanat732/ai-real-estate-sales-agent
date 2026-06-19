@@ -135,10 +135,13 @@ Lead Management System
 
 
 | Layer              | Purpose                                            |
-
+|  ---               |  ---                                               |
 | Frontend           | Customer interface and website experience          |
+|  ---               |  ---                                               |
 | Backend            | Handles communication and business workflows       |
+|  ---               |  ---                                               |
 | AI Layer           | Understands conversations and generates responses  |
+|  ---               |  ---                                               |
 | Automation Layer   | Supports business processes                        |
 
 
