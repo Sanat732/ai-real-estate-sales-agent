@@ -331,23 +331,7 @@ message:userMessage
 });
 
 
-if(
-aiReply.includes(
-"full name"
-)
-){
 
-
-req.session.leadCapture =
-true;
-
-
-console.log(
-"📞 Lead capture mode ON"
-);
-
-
-}
 
 
 // LOCAL SOPHIA BRAIN
