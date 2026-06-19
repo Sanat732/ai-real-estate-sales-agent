@@ -8,16 +8,68 @@ const [open,setOpen] = useState(false);
 const [preview,setPreview] = useState(true);
 
 
-const [messages,setMessages] = useState([
+const resetChat = async()=>{
+
+
+localStorage.removeItem(
+"sophia_messages"
+);
+
+
+setMessages(
+defaultMessages
+);
+
+
+await fetch(
+
+`${import.meta.env.VITE_API_URL}/reset-chat`,
+
+{
+
+method:"POST",
+
+credentials:"include"
+
+}
+
+);
+
+
+};
+
+
+const defaultMessages = [
 
 {
 
 sender:"bot",
+
 text:
 "Hello 👋 Welcome to Elite Dubai Properties. I'm Sophia, your property assistant. Are you looking to Buy, Rent, or Invest?"
+
 }
 
-]);
+];
+
+
+const [messages,setMessages] = useState(()=>{
+
+
+const savedMessages =
+localStorage.getItem(
+"sophia_messages"
+);
+
+
+return savedMessages
+?
+JSON.parse(savedMessages)
+:
+defaultMessages;
+
+
+});
 
 
 const messagesRef = useRef(null);
@@ -25,12 +77,24 @@ const messagesRef = useRef(null);
 
 useEffect(()=>{
 
+
+localStorage.setItem(
+
+"sophia_messages",
+
+JSON.stringify(messages)
+
+);
+
+
+
 if(messagesRef.current){
 
 messagesRef.current.scrollTop =
 messagesRef.current.scrollHeight;
 
 }
+
 
 },[messages]);
 
@@ -183,7 +247,7 @@ Date.now();
 
 
 const response = await fetch(
-"http://localhost:5000/chat",
+`${import.meta.env.VITE_API_URL}/chat`,
 
 {
 
@@ -352,9 +416,30 @@ Sophia AI 🏡
 </span>
 
 
+<div className="header-actions">
+
+
+<button
+
+className="chat-reset"
+
+onMouseDown={(e)=>e.stopPropagation()}
+
+onClick={resetChat}
+
+>
+
+↻
+
+</button>
+
+
+
 <button
 
 className="chat-close"
+
+onMouseDown={(e)=>e.stopPropagation()}
 
 onClick={()=>setOpen(false)}
 
@@ -367,6 +452,8 @@ onClick={()=>setOpen(false)}
 
 </div>
 
+
+</div>
 
 
 

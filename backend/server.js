@@ -74,7 +74,43 @@ res.send(
 
 });
 
+// RESET CHAT ROUTE
 
+app.post("/reset-chat",(req,res)=>{
+
+
+req.session.destroy((error)=>{
+
+
+if(error){
+
+
+return res.status(500).json({
+
+message:"Reset failed"
+
+});
+
+
+}
+
+
+
+res.clearCookie("connect.sid");
+
+
+res.json({
+
+message:"Chat reset successfully"
+
+});
+
+
+
+});
+
+
+});
 
 
 // Property Route
