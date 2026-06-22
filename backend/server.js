@@ -44,7 +44,7 @@ const allowedOrigins = [
 
 "http://localhost:5174",
 
-process.env.FRONTEND_URL
+"https://ai-real-estate-sales-agent-six.vercel.app"
 
 ];
 
